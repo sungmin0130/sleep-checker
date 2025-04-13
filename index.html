@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>수면 습관 분석기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>수면 습관 분석기</h1>
+
+  <div class="form-container">
+    <label>평일 취침 시간: <input type="time" id="weekdaySleep"></label>
+    <label>평일 기상 시간: <input type="time" id="weekdayWake"></label>
+    <label>주말 취침 시간: <input type="time" id="weekendSleep"></label>
+    <label>주말 기상 시간: <input type="time" id="weekendWake"></label>
+    <label><input type="checkbox" id="nap"> 낮잠을 자나요?</label>
+    <label><input type="checkbox" id="tired"> 자고 나도 피곤한가요?</label>
+
+    <button onclick="analyze()">분석하기</button>
+  </div>
+
+  <div class="result" id="result"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
