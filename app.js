@@ -1,5 +1,5 @@
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
+  apiKey: "",
   authDomain: "sleep-checker.firebaseapp.com",
   projectId: "sleep-checker"
 };
@@ -68,6 +68,19 @@ document.getElementById('sleepForm').addEventListener('submit', async (e) => {
   const tired = document.getElementById('tired').value;
 
   const { grade, gender } = extractGradeAndGender(studentId);
+
+  if (
+  !studentId || isNaN(age) || isNaN(weekdaySleep) || isNaN(weekendSleep) ||
+  isNaN(weekdayNap) || isNaN(weekendNap) || isNaN(caffeine)
+) {
+  alert("모든 항목을 올바르게 입력해주세요.");
+  return;
+}
+console.log({
+  studentId, age, weekdaySleep, weekendSleep,
+  weekdayNap, weekendNap, caffeine, tired,
+  grade, gender
+});
 
   await db.collection("sleepRecords").add({
     studentId, age, weekdaySleep, weekendSleep,
