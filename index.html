@@ -1,26 +1,42 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>수면 습관 분석기</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>수면 습관 피드백</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
-  <h1>수면 습관 분석기</h1>
-
-  <div class="form-container">
-    <label>평일 취침 시간: <input type="time" id="weekdaySleep"></label>
-    <label>평일 기상 시간: <input type="time" id="weekdayWake"></label>
-    <label>주말 취침 시간: <input type="time" id="weekendSleep"></label>
-    <label>주말 기상 시간: <input type="time" id="weekendWake"></label>
-    <label><input type="checkbox" id="nap"> 낮잠을 자나요?</label>
-    <label><input type="checkbox" id="tired"> 자고 나도 피곤한가요?</label>
-
-    <button onclick="analyze()">분석하기</button>
+  <div class="container">
+    <h1>수면 습관 조사</h1>
+    <form id="sleepForm">
+      <label>학번: <input type="text" id="studentId" required></label>
+      <label>나이: <input type="number" id="age" required></label>
+      <label>평일 평균 수면시간 (시간): <input type="number" id="weekdaySleep" required></label>
+      <label>주말 평균 수면시간 (시간): <input type="number" id="weekendSleep" required></label>
+      <label>평일 낮잠 시간 (분): <input type="number" id="weekdayNap" value="0"></label>
+      <label>주말 낮잠 시간 (분): <input type="number" id="weekendNap" value="0"></label>
+      <label>카페인 섭취량 (mg): <input type="number" id="caffeine" value="0"></label>
+      <label>잠을 자도 계속 피곤한가요?
+        <select id="tired">
+          <option value="no">아니오</option>
+          <option value="yes">네</option>
+        </select>
+      </label>
+      <button type="submit">제출</button>
+    </form>
+    <div id="feedback"></div>
   </div>
-
-  <div class="result" id="result"></div>
-
-  <script src="script.js"></script>
+  <div id="feedbackModal" class="modal hidden">
+  <div class="modal-content">
+    <span id="closeModal">&times;</span>
+    <div id="modalFeedbackText"></div>
+  </div>
+</div>
+  <script src="app.js"></script>
 </body>
 </html>
